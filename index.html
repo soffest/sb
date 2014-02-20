@@ -1,0 +1,127 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- Тег meta для указания кодировки -->
+  <meta charset="utf-8">
+  <style>
+  table {
+    border: 1px solid grey;
+	border-spacing: 0;
+	display: block;
+}
+
+
+
+.standart-cell {
+    border: 1px solid grey;
+    width: 30px;
+    height: 30px;
+}
+
+.sank {
+border: 4px dotted darkred;
+background: red;
+}
+
+.under-cursor{
+    background: green;
+}
+
+.empty {
+    background: white;
+}
+
+.miss {
+ background: blue;
+}
+
+.ship-horizontal {
+    background: black;
+}
+.ship-begin-horizontal {
+    background: #FFFF00;
+}
+.ship-end-horizontal {
+    background: #00FFFF;
+}
+.ship-vertical {
+    background: #FF00FF;
+}
+.ship-begin-vertical {
+    background: #FFFF00;
+}
+.ship-end-vertical {
+    background: #00FFFF;
+}
+
+.ship-crashed {
+    background: red;
+}
+
+
+
+  </style>
+
+</head>
+<body>
+<br></br>
+<input name='reload' style='display:block' src='reload_button.jpg' type='image' alt='Начать игру заново' onclick = 'window.location.reload([true])'>
+<br></br>
+
+  <script src = 'field.js'></script>
+   <script src = 'cell.js'></script>
+    <script src = 'ship.js'></script>
+	 <script src = 'player.js'></script>
+	  <script src = 'game.js'></script>
+  
+  <script>
+	
+	//создание полей
+	playerField = new Field (10, 10);
+	enemyField = new Field (10,10);
+	
+	enemy = new player();
+	for (var i = 0; i < 10; i++) {
+		for (var j = 0; j < 10; j++) {
+			var playerCell = new Cell(i, j);
+			var enemyCell = new Cell (i,j);
+			playerField.addCell(playerCell);
+			enemyField.addCell(enemyCell);
+		}
+	}
+	
+	// создание кораблей
+	for (var k = 0; k < playerField.maxShipSize ; k++) {
+		for (var m = 0; m < (playerField.maxShipSize - k); m++) {
+		var playerShip = new ship(k+1);
+		var enemyShip = new ship(k+1);
+		playerField.addShip(playerShip, m);
+		enemyField.addShip(enemyShip, m);
+   
+		}
+	}
+	//прорисовка полей
+	
+	var arrangeRandomly = confirm("Расставить твои корабли случайным образом?");
+	if (arrangeRandomly) {
+	 playerField.arrangeShipRandomly();
+	}
+	enemyField.arrangeShipRandomly();
+	
+	playerField.draw('playerField');
+	enemyField.draw('enemyField');
+	
+	var plField = document.getElementById('playerField');
+	var enField = document.getElementById('enemyField');
+	theGame = new game();
+	
+	
+  </script>
+
+
+  
+  
+
+  
+</body>
+</html>
