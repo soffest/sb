@@ -43,6 +43,15 @@ var Field = function (width, height) {
 			}
         }
     }
+
+    this.delCelEvents = function () {
+    	for (var i = 0; i < width; i++) {
+        	for (var j = 0; j < height; j++) {
+            	this.cells[i].delEvent('click');
+        	}
+    	}	
+    }
+
 	//расставляет корабли в случайном порядке
 	this.arrangeShipRandomly = function ( ) {
 	

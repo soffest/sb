@@ -46,8 +46,14 @@ var Cell = function (x, y) {
 			                            
     this.clicked = function (event) {
 		var shotResult = this.checkShot();
-		this.td.removeEventListener('click', handler , true);
+		this.delEvent('click');
 		theGame.priority(shotResult);
+	}
+
+	this.delEvent = function (event) {
+
+		this.td.removeEventListener(event, handler , true);
+
 	}
 	
  

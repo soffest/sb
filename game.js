@@ -14,7 +14,7 @@ var game = function () {
 		if ((playerShipsCrashed ==20) || (enemyShipsCrashed ==20)) {
 			message = (playerShipsCrashed ==20) ? 'ЛУЗЕР!!' : 'Ура, победа!!!';
 			alert (message);
-			window.location.reload([true]);
+			window.location.reload();
 		}
 		return;
 	}
