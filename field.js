@@ -4,8 +4,9 @@ var Field = function (width, height) {
     this.height = height;
     this.cells = [];
 	this.ships = [];
-	
-	
+	var currentShipSize = 0;
+	var currentShipNumber = 0;
+
     for (var i = 0; i < width; i++) {
         this.cells.push([]);
         for (var j = 0; j < height; j++) {
@@ -72,6 +73,10 @@ var Field = function (width, height) {
 		}
 	}
 	
+	/*this.arrangeShip = function () {
+
+
+	} */
 		
 	//проверяет, есть ли свободное место под корабль при заданных координатах первой ячейки
 	this.checkPlace = function ( x, y, size, orientation ) {
@@ -96,12 +101,7 @@ var Field = function (width, height) {
 		if ((coords.lengthway+size)> 10) { 
 			return false; // если корабль выходит за пределы поля
 		}
-		//var startCoord = (coords.lengthway == 0) ? coords.lengthway : (coords.lengthway-1); //если он на краю поля, то не нужно проверять предыдущую клетку поля
-		//var dif = ((coords.lengthway+size-1) == 9) ? (coords.lengthway - startCoord) : (coords.lengthway - startCoord+1) ; //коррекция: сколько всего клеток в длину надо проверить
 		coords.lengthway --;
-		// если корабль располагается вдоль границы поля, то с этой стороны не нужно проверять ячейки
-		//var bgnMargin = ( coords.crosscut == 0 ) ? 0 : -1 ; 
-		//var endMargin = ( coords.crosscut == 9 ) ? 0 : 1 ;
 		var m = coords.crosscut;
 		for ( var i = 0; i < size + 2; i++ ) {
 			for ( var j = -1; j <= 1 ; j++ ) { 

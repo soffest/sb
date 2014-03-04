@@ -53,7 +53,6 @@ var Cell = function (x, y) {
 	this.delEvent = function (event) {
 
 		this.td.removeEventListener(event, handler , true);
-
 	}
 	
  

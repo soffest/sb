@@ -79,42 +79,10 @@ background: red;
 	//создание полей
 	playerField = new Field (10, 10);
 	enemyField = new Field (10,10);
-	
 	enemy = new player();
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
-			var playerCell = new Cell(i, j);
-			var enemyCell = new Cell (i,j);
-			playerField.addCell(playerCell);
-			enemyField.addCell(enemyCell);
-		}
-	}
-	
-	// создание кораблей
-	for (var k = 0; k < playerField.maxShipSize ; k++) {
-		for (var m = 0; m < (playerField.maxShipSize - k); m++) {
-		var playerShip = new ship(k+1);
-		var enemyShip = new ship(k+1);
-		playerField.addShip(playerShip, m);
-		enemyField.addShip(enemyShip, m);
-   
-		}
-	}
-	//прорисовка полей
-	
-	var arrangeRandomly = confirm("Расставить твои корабли случайным образом?");
-	if (arrangeRandomly) {
-	 playerField.arrangeShipRandomly();
-	}
-	enemyField.arrangeShipRandomly();
-	
-	playerField.draw('playerField');
-	enemyField.draw('enemyField');
-	
-	var plField = document.getElementById('playerField');
-	var enField = document.getElementById('enemyField');
 	theGame = new game();
-	
+	theGame.prepare();
+  
 	
   </script>
 
