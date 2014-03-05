@@ -1,6 +1,6 @@
 var player = function () {
 	var lastOrientation = null,
-	lastShipX = null,
+	lastShipX = 'empty',
 	lastShipY = null,
 	result = null,
 	lastStepX = null,
@@ -13,7 +13,7 @@ var player = function () {
 		while (result!='miss') {
 			this.shoot();
 			if (result == 'sank') {
-				lastShipX = null;
+				lastShipX = 'empty';
 				lastShipY = null;
 				lastOrientation = null;
 				theGame.checkShipsLeft();
@@ -23,9 +23,9 @@ var player = function () {
 		result = 0;
 		return;
 	}
-	//выбирает как стрелять
+	//choses shot method: random, when orientation is known or not
 	this.shoot = function () {
-		if (lastShipX) {
+		if (lastShipX != 'empty' ) {
 			if (lastOrientation) {
 				this.shootShip();
 				return;
@@ -44,7 +44,7 @@ var player = function () {
 		}
 		
 	}	
-	// стреляет рандомно
+	// shoot randomly
 	this.shootRandomly = function () {
 		var check = false;
 		while (!(check)) {
@@ -59,7 +59,8 @@ var player = function () {
 		}
 		return;
 	}
-	
+
+	//if ship is hit but orientation unknown
 	this.findOrientation = function () {
 		var check = false;
 		while (!(check)) {
@@ -77,18 +78,19 @@ var player = function () {
 		return;
 	}
 
+	//if oriantation is known
 	this.shootShip = function () {
 		var check = false;
 		lastX = lastX + lastStepX;
 		lastY = lastY + lastStepY;
-		//alert ('X:' + lastX + '   Y:' + lastY);
+		
 		check = playerField.checkPlace( (lastX), (lastY), 1);
 		if (!(check)) {
 			lastStepX = -lastStepX;
 			lastStepY = -lastStepY;
 			lastX = lastShipX + lastStepX;
 			lastY = lastShipY + lastStepY;
-			//alert('-StepX:' + lastStepX + '   -StepY:' + lastStepY);
+			
 		}
 		result = playerField.cells[lastX][lastY].checkShot();
 		if (result == 'miss') {

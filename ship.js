@@ -1,6 +1,6 @@
 var ship = function (size) {
 	this.size = size;
-	this.orientation;//горизонтальная или вертикальная ориентация корабля
+	this.orientation;//horizontal or vertical
 	this.decks = [];
 	this.lives = size;
 

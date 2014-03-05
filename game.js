@@ -11,7 +11,7 @@ var game = function () {
 			}
 		}
 	
-	// создание кораблей
+	// creates objects 'ship' for each field
 		for (var k = 0; k < playerField.maxShipSize ; k++) {
 			for (var m = 0; m < (playerField.maxShipSize - k); m++) {
 				var playerShip = new ship(k+1);
@@ -25,17 +25,18 @@ var game = function () {
 		var arrangeRandomly = confirm("Расставить твои корабли случайным образом?");
 		if (arrangeRandomly) {
 	 		playerField.arrangeShipRandomly();
+	 		this.start();
 		}
-		/*else {
-			//расставить не случайно
-		}*/
-		enemyField.arrangeShipRandomly();
-		this.start();
+		
+		playerField.draw('playerField', arrangeRandomly );
+		
+		
 	}
 	
 	this.start = function  () {
-		playerField.draw('playerField');
 		enemyField.draw('enemyField');
+		enemyField.arrangeShipRandomly();
+		
 	} 
 	
 	this.priority = function (result) {

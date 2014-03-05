@@ -18,41 +18,61 @@ var Cell = function (x, y) {
     this.ship = null;
     this.previousClassName = 'empty';
 	this.td = null;
-	var handler = null;
+	var handler1 = null;
+	var handler2 = null;
 	
 	
     this.setClassName = function (state) {
         this.td.className = (state == 'sank') ? state : ('standart-cell '+ state);   
     }
     
-    this.createElement = function (attachment) {
+    this.createElement = function (attachment, randomly) {
         this.td = document.createElement('td');
         this.td.setAttribute('data-x', this.x);
         this.td.setAttribute('data-y', this.y);
-        //доработать!!!!!!!!!
+        
+        //Enemy`s Field. Click means shot.
 		if (attachment == 'enemyField') {
 			this.td.className = 'standart-cell '+'empty';
-			handler = this.clicked.bind(this);
-			this.td.addEventListener('click', handler, true );
+			handler1 = this.shoot.bind(this);
+			this.td.addEventListener('click', handler1, true );
 			this.td.addEventListener('mouseover', this.hover.bind(this));
 			this.td.addEventListener('mouseout',this.returnState.bind(this));
 		}
+		// Player`s field. Clicks are used to arrange ships 
+		if (randomly) {
+			this.td.className = 'standart-cell '+this.state;
+		}
+		//If player chose random arrangement of his ships
 		else {
 			this.td.className = 'standart-cell '+this.state;
+			handler2 = this.clicked.bind(this);
+			this.td.addEventListener('click', handler2, true );
+			//this.td.addEventListener('mouseover', this.hover.bind(this));
+			//this.td.addEventListener('mouseout',this.returnState.bind(this));
+			
 		}
         return this.td;
     };
 	
+	this.clicked = function () {
+		playerField.arrangeShip(this.x, this.y);
+
+	}
 			                            
-    this.clicked = function (event) {
+    this.shoot = function (event) {
 		var shotResult = this.checkShot();
-		this.delEvent('click');
+		this.delEvent('click', handler1);
 		theGame.priority(shotResult);
 	}
 
-	this.delEvent = function (event) {
+	this.setShip = function () {
+		
+	}
 
-		this.td.removeEventListener(event, handler , true);
+	this.delEvent = function (event, h) {
+
+		this.td.removeEventListener(event, h , true);
 	}
 	
  
@@ -66,7 +86,7 @@ var Cell = function (x, y) {
 	
 	
 	
-	//проверяет резултат выстрела 
+	//cheks shot result
 	this.checkShot = function () {
 		if (this.state == 'empty') {
 					this.state ='miss';
