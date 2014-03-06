@@ -180,7 +180,8 @@ var Field = function (width, height) {
 		for ( var i = 0; i < ship.size ; i++) {
 			ship.decks[i] = this.cells[x][y];
 			this.cells[x][y].ship = ship;
-			this.cells[x][y].state = ship.makeState(i);
+			//this.cells[x][y].state = ship.makeState(i);
+			ship.makeState(i);
 			if (ship.orientation == 'vertical') {
 				y++;
 			}
@@ -194,8 +195,10 @@ var Field = function (width, height) {
 		for (var k = 0; k < this.maxShipSize ; k++) {
 			for (var m = 0; m < (this.maxShipSize - k); m++) {
 	    		if (this.ships[k][m].lives != 0) {
-	    			//alert (1);
-	    			this.ships[k][m].draw();
+	    			for (var i = 0 ; i < this.ships[k][m].size; i++) {
+	    				//alert( 'i='+i+'  state='+this.ships[k][m].makeState(i));
+	    			}
+	    			this.ships[k][m].draw(false);
 	    		}
 	   		}
 		}	

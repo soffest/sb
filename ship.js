@@ -11,17 +11,18 @@ var ship = function (size) {
 		for (var k = 0; k< this.size; k++) {
 			if (className) {
 				this.decks[k].state = className;
+				this.decks[k].setClassName(className);
+				this.decks[k].previousClassName = className;
 			}
 			else {
-				className = this.decks[k].state;
+				this.decks[k].setClassName(this.decks[k].state);
+				this.decks[k].previousClassName = this.decks[k].state;
 			}
 			//alert ('className='+className);
-			this.decks[k].setClassName(className);
-			this.decks[k].previousClassName = className;
 		}
 	} 
 	this.makeState = function (deckNumber) {
-		if (deckNumber>0) {
+		/*if (deckNumber>0) {
 			if (deckNumber == this.size-1) {
 				state ='ship-end' 
 				}
@@ -31,8 +32,10 @@ var ship = function (size) {
 		}
 		else {
 		state = 'ship-begin';	
-		}
+		}*/
+		state = (deckNumber == 0) ? 'ship-begin' : (deckNumber == this.size-1) ? 'ship-end' : 'ship';
 		state = state + '-' + this.orientation;
+		this.decks[deckNumber].state = state;
 		return state; 
 	}
 	
