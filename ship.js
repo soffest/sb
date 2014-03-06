@@ -9,8 +9,13 @@ var ship = function (size) {
 		}
 	this.draw = function (className) {
 		for (var k = 0; k< this.size; k++) {
+			if (className) {
+				this.decks[k].state = className;
+			}
+			else {
+				className = this.decks[k].state;
+			}
 			this.decks[k].setClassName(className);
-			this.decks[k].state = className;
 			this.decks[k].previousClassName = className;
 		}
 	} 

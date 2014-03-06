@@ -39,25 +39,25 @@ var Cell = function (x, y) {
 			this.td.addEventListener('mouseover', this.hover.bind(this));
 			this.td.addEventListener('mouseout',this.returnState.bind(this));
 		}
-		// Player`s field. Clicks are used to arrange ships 
-		if (randomly) {
-			this.td.className = 'standart-cell '+this.state;
-		}
-		//If player chose random arrangement of his ships
 		else {
-			this.td.className = 'standart-cell '+this.state;
-			handler2 = this.clicked.bind(this);
-			this.td.addEventListener('click', handler2, true );
-			//this.td.addEventListener('mouseover', this.hover.bind(this));
-			//this.td.addEventListener('mouseout',this.returnState.bind(this));
-			
+			// Player`s field. Clicks are used to arrange ships 
+			if (randomly) {
+				this.td.className = 'standart-cell '+this.state;
+			}
+		//If player chose random arrangement of his ships
+			else {
+				this.td.className = 'standart-cell '+this.state;
+				handler2 = this.clicked.bind(this);
+				this.td.addEventListener('click', handler2, true );
+				//this.td.addEventListener('mouseover', this.hover.bind(this));
+				//this.td.addEventListener('mouseout',this.returnState.bind(this));
+			}
 		}
         return this.td;
     };
 	
 	this.clicked = function () {
 		playerField.arrangeShip(this.x, this.y);
-
 	}
 			                            
     this.shoot = function (event) {

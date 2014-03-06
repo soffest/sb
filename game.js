@@ -29,8 +29,6 @@ var game = function () {
 		}
 		
 		playerField.draw('playerField', arrangeRandomly );
-		
-		
 	}
 	
 	this.start = function  () {

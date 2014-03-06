@@ -104,16 +104,18 @@ var Field = function (width, height) {
 					return;
 				}
 			}
+			
+			
+
+			this.putShip(this.ships[s][n], lastX, lastY);
+			this.ships[s][n].draw();
+			
 			//checks if all ships are placed
 			if ((s == 0) && (n == this.maxShipSize-1)) {
 				this.delCelEvents();
 				theGame.start();
 				return;
 			}
-
-			this.putShip (this.ships[s][n], lastX, lastY);
-			this.ships[s][n].draw('darkblue');
-			
 			
 			//goes to next ship
 			if (n < (this.maxShipSize - s-1) ) {
@@ -173,13 +175,17 @@ var Field = function (width, height) {
 	
 	//sets ship into the cell due to initial coordinates and orientation
 	this.putShip = function(ship, x, y) {
-	for ( var i = 0; i < ship.size ; i++) {
-	ship.decks[i] = this.cells[x][y];
-	this.cells[x][y].ship = ship;
-	this.cells[x][y].state = ship.makeState(i);
-	if (ship.orientation == 'vertical') { y++ }
-	else { x++ }
-	}
+		for ( var i = 0; i < ship.size ; i++) {
+			ship.decks[i] = this.cells[x][y];
+			this.cells[x][y].ship = ship;
+			this.cells[x][y].state = ship.makeState(i);
+			if (ship.orientation == 'vertical') {
+				y++;
+			}
+			else {
+				x++;
+			}
+		}
 	}
 	
 }
