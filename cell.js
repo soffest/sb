@@ -62,7 +62,7 @@ var Cell = function (x, y) {
 			                            
     this.shoot = function (event) {
 		var shotResult = this.checkShot();
-		this.delEvent('click', handler1);
+		this.delEvent('click');
 		theGame.priority(shotResult);
 	}
 
@@ -70,8 +70,8 @@ var Cell = function (x, y) {
 		
 	}
 
-	this.delEvent = function (event, h) {
-
+	this.delEvent = function (event) {
+		var h = handler1 || handler2;
 		this.td.removeEventListener(event, h , true);
 	}
 	

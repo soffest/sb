@@ -22,9 +22,9 @@ var Field = function (width, height) {
     }
     
 	for (var k = 0; k < this.maxShipSize ; k++) {
-	this.ships.push([]);
+		this.ships.push([]);
         for (var m = 0; m < (this.maxShipSize - k); m++) {
-	    this.ships[k].push(null);
+	    	this.ships[k].push(null);
 	    }
 	}
 	
@@ -33,7 +33,7 @@ var Field = function (width, height) {
     }
 	
 	this.addShip = function (ship, orderNumber) {
-	this.ships[ship.size-1][orderNumber] = ship; 
+		this.ships[ship.size-1][orderNumber] = ship; 
 	}
 	
     this.draw = function (attachment, randomly) {
@@ -85,7 +85,9 @@ var Field = function (width, height) {
 		if (lastX == 'empty')  {
 			h = this.checkPlace (x,y,s + 1, 'horizontal');
 			v = this.checkPlace (x,y,s + 1, 'vertical');
-				if ( (!v) && (!h) ) { return; }
+			if ( (!v) && (!h) ) {
+				return; 
+			}
 				//alert ('ship begins');
 			lastX = x;
 			lastY = y;
@@ -188,4 +190,14 @@ var Field = function (width, height) {
 		}
 	}
 	
+	this.drawLiveShips = function () {
+		for (var k = 0; k < this.maxShipSize ; k++) {
+			for (var m = 0; m < (this.maxShipSize - k); m++) {
+	    		if (this.ships[k][m].lives != 0) {
+	    			//alert (1);
+	    			this.ships[k][m].draw();
+	    		}
+	   		}
+		}	
+	}
 }

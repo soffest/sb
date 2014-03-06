@@ -49,17 +49,17 @@ var game = function () {
 		var enField = document.getElementById('enemyField');
 		var playerShipsCrashed = plField.querySelectorAll('.sank').length;
 		var enemyShipsCrashed = enField.querySelectorAll('.sank').length;
-		if ((playerShipsCrashed ==20) || (enemyShipsCrashed ==20)) {
-			message = (playerShipsCrashed ==20) ? 'ЛУЗЕР!!' : 'Ура, победа!!!';
-			alert (message);
-			window.location.reload();
+		if (playerShipsCrashed ==20)  {
+			alert ('ЛУЗЕР!!');
+			enemyField.drawLiveShips();
+			enemyField.delCelEvents();
 		}
-		return;
+		else {
+			if (enemyShipsCrashed ==20) {
+				alert('Ура, победа!!!');
+			}
+		}
+		//window.location.reload();
 	}
-
-
-
-
-
-
+		
 }

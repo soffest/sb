@@ -15,12 +15,13 @@ var ship = function (size) {
 			else {
 				className = this.decks[k].state;
 			}
+			//alert ('className='+className);
 			this.decks[k].setClassName(className);
 			this.decks[k].previousClassName = className;
 		}
 	} 
 	this.makeState = function (deckNumber) {
-		if (deckNumber) {
+		if (deckNumber>0) {
 			if (deckNumber == this.size-1) {
 				state ='ship-end' 
 				}
