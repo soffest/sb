@@ -195,9 +195,6 @@ var Field = function (width, height) {
 		for (var k = 0; k < this.maxShipSize ; k++) {
 			for (var m = 0; m < (this.maxShipSize - k); m++) {
 	    		if (this.ships[k][m].lives != 0) {
-	    			for (var i = 0 ; i < this.ships[k][m].size; i++) {
-	    				//alert( 'i='+i+'  state='+this.ships[k][m].makeState(i));
-	    			}
 	    			this.ships[k][m].draw(false);
 	    		}
 	   		}
