@@ -18,8 +18,8 @@ var Cell = function (x, y) {
     this.ship = null;
     this.previousClassName = 'empty';
 	this.td = null;
-	var handler1 = null;
-	var handler2 = null;
+	var handler1 = null,
+		handler2 = null;
 	
 	
     this.setClassName = function (state) {

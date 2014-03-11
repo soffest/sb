@@ -22,7 +22,7 @@ var game = function () {
 			}
 		}
 
-		var arrangeRandomly = confirm("Расставить твои корабли случайным образом?");
+		var arrangeRandomly = confirm('Расставить твои корабли случайным образом?');
 		if (arrangeRandomly) {
 	 		playerField.arrangeShipRandomly();
 	 		this.start();

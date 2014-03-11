@@ -5,14 +5,14 @@ var Field = function (width, height) {
     this.cells = [];
 	this.ships = [];
 
-	var s = this.maxShipSize-1;
-	var n = 0;
+	var s = this.maxShipSize-1,
+		n = 0;
 
 	//variables used when ships arranged manually
-	var lastX = 'empty'
-	var lastY = null;
-	var h = false;
-	var v = false;
+	var lastX = 'empty',
+		lastY = null,
+		h = false,
+		v = false;
 
     for (var i = 0; i < width; i++) {
         this.cells.push([]);
