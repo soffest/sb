@@ -78,7 +78,10 @@ seaBattle.Cell = function (x, y) {
 		
 	}
 
-	this.delEvent = function (event,h) {
+	this.delEvent = function (event, h) {
+		if (h == undefined) {
+			h = handlerClick;
+		};
 		this.td.removeEventListener(event, h );
 	}
 	

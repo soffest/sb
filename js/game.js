@@ -33,6 +33,9 @@ seaBattle.Game = function () {
 			this.playerField.arrangeShipRandomly();
 			this.start();
 		}
+		else {
+			alert ('1-й раз кликнешь - начало корабля выберешь,\r\n 2-й раз кликнешь - поставишь корабль.')
+		}
 		
 		this.playerField.draw('playerField', arrangeRandomly );
 	}
@@ -56,13 +59,16 @@ seaBattle.Game = function () {
 		var playerShipsCrashed = plField.querySelectorAll('.sank').length;
 		var enemyShipsCrashed = enField.querySelectorAll('.sank').length;
 		if (playerShipsCrashed ==20)  {
-			alert ('ЛУЗЕР!!');
 			this.enemyField.drawLiveShips();
 			this.enemyField.delCelEvents();
+			alert ('ЛУЗЕР!!');
 		}
 		else {
 			if (enemyShipsCrashed ==20) {
-				alert('Ура, победа!!!');
+				this.enemyField.delCelEvents();
+				alert('Поздравляем! Ты настолько крут, что Чак Норрис' +
+					' отправляет своим врагам открытки' +
+					' с твоей фоткой!');
 			}
 		}
 		//window.location.reload();

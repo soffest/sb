@@ -4,7 +4,7 @@ seaBattle.Field = function (width, height) {
     this.height = height;
     this.cells = [];
 	this.ships = [];
-	
+	//size (s), number (n) of current ship 
 	var s = this.maxShipSize-1,
 		n = 0;
 
@@ -103,6 +103,9 @@ seaBattle.Field = function (width, height) {
 					this.ships[s][n].orientation = 'horizontal'
 				}
 				else {
+					message = ( (y-lastY) < 0) ? 'И как ты себе это представляешь? (нельзя расположить корабль по диагонали)' :
+					'Отсыпь немного, а?';
+					alert (message);
 					return;
 				}
 			}
