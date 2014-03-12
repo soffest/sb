@@ -5,8 +5,9 @@ seaBattle.Ship = function (size) {
 	this.lives = size;
 
 	for (var j = 0; j < this.size; j++) {
-     this.decks.push(null);        
-		}
+		this.decks.push(null);        
+	}
+	
 	this.draw = function (className) {
 		for (var k = 0; k< this.size; k++) {
 			if (className) {

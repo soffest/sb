@@ -1,8 +1,8 @@
 seaBattle.Field = function (width, height) {
-    this.maxShipSize = 4;
-    this.width = width;
-    this.height = height;
-    this.cells = [];
+	this.maxShipSize = 4;
+	this.width = width;
+	this.height = height;
+	this.cells = [];
 	this.ships = [];
 	//size (s), number (n) of current ship 
 	var s = this.maxShipSize-1,
@@ -14,51 +14,51 @@ seaBattle.Field = function (width, height) {
 		h = false,
 		v = false;
 
-    for (var i = 0; i < width; i++) {
-        this.cells.push([]);
-        for (var j = 0; j < height; j++) {
-            this.cells[i].push(null);
-        }
-    }
-    
+	for (var i = 0; i < width; i++) {
+		this.cells.push([]);
+		for (var j = 0; j < height; j++) {
+			this.cells[i].push(null);
+		}
+	}
+
 	for (var k = 0; k < this.maxShipSize ; k++) {
 		this.ships.push([]);
-        for (var m = 0; m < (this.maxShipSize - k); m++) {
-	    	this.ships[k].push(null);
-	    }
+		for (var m = 0; m < (this.maxShipSize - k); m++) {
+			this.ships[k].push(null);
+		}
 	}
 	
-    this.addCell = function (cell) {
-        this.cells[cell.x][cell.y] = cell;
-    }
+	this.addCell = function (cell) {
+		this.cells[cell.x][cell.y] = cell;
+	}
 	
 	this.addShip = function (ship, orderNumber) {
 		this.ships[ship.size-1][orderNumber] = ship; 
 	}
 	
-    this.draw = function (attachment, randomly) {
-        var table = document.createElement('table');
-			table.setAttribute('id', attachment);
-			table.setAttribute('align', 'left');
-            body = document.querySelector('body');
-			body.appendChild(table);
-        for (var y = 0; y < this.width; y++) {
-            var tr = document.createElement('tr');
-            table.appendChild(tr);
-            for (var x = 0; x < this.height; x++) {
-                var td = this.cells[x][y].createElement(attachment, randomly);
-                tr.appendChild(td);
+	this.draw = function (attachment, randomly) {
+		var table = document.createElement('table');
+		table.setAttribute('id', attachment);
+		table.setAttribute('align', 'left');
+		body = document.querySelector('body');
+		body.appendChild(table);
+		for (var y = 0; y < this.width; y++) {
+			var tr = document.createElement('tr');
+			table.appendChild(tr);
+			for (var x = 0; x < this.height; x++) {
+				var td = this.cells[x][y].createElement(attachment, randomly);
+				tr.appendChild(td);
 			}
-        }
-    }
+		}
+	}
 
-    this.delCelEvents = function () {
-    	for (var i = 0; i < width; i++) {
-        	for (var j = 0; j < height; j++) {
-            	this.cells[i][j].delEvent('click');
-        	}
-    	}	
-    }
+this.delCelEvents = function () {
+	for (var i = 0; i < width; i++) {
+	for (var j = 0; j < height; j++) {
+	this.cells[i][j].delEvent('click');
+	}
+	}	
+}
 
 	//Arranges ships randomly
 	this.arrangeShipRandomly = function ( ) {
@@ -198,10 +198,10 @@ seaBattle.Field = function (width, height) {
 	this.drawLiveShips = function () {
 		for (var k = 0; k < this.maxShipSize ; k++) {
 			for (var m = 0; m < (this.maxShipSize - k); m++) {
-	    		if (this.ships[k][m].lives != 0) {
-	    			this.ships[k][m].draw(false);
-	    		}
-	   		}
+				if (this.ships[k][m].lives != 0) {
+					this.ships[k][m].draw(false);
+				}
+			}
 		}	
 	}
 }

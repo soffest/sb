@@ -1,5 +1,5 @@
 seaBattle.Cell = function (x, y) {
-    var empty = 'empty',
+	var empty = 'empty',
 		miss = 'miss',
 		ship = 'ship-horizontal',
 		shipBegin = 'ship-begin-horizontal',
@@ -14,28 +14,24 @@ seaBattle.Cell = function (x, y) {
 	var handlerClick = null,
 		handlerMouseOver = null,
 		handlerMouseOut = null;
-				
-    
-    this.x = x;
-    this.y = y;
-    this.state = empty;
-    this.ship = null;
-    this.previousClassName = 'empty';
+	this.x = x;
+	this.y = y;
+	this.state = empty;
+	this.ship = null;
+	this.previousClassName = 'empty';
 	this.td = null;
 	this.field = null;
 	
-	
-	
-    this.setClassName = function (state) {
-        this.td.className = (state == 'sank') ? state : ('standart-cell '+ state);   
-    }
-    
-    this.createElement = function (attachment, randomly) {
-        this.td = document.createElement('td');
-        this.td.setAttribute('data-x', this.x);
-        this.td.setAttribute('data-y', this.y);
-        
-        //Enemy`s Field. Click means shot.
+	this.setClassName = function (state) {
+		this.td.className = (state == 'sank') ? state : ('standart-cell '+ state);   
+	}
+
+	this.createElement = function (attachment, randomly) {
+		this.td = document.createElement('td');
+		this.td.setAttribute('data-x', this.x);
+		this.td.setAttribute('data-y', this.y);
+
+		//Enemy`s Field. Click means shot.
 		if (attachment == 'enemyField') {
 			this.td.className = 'standart-cell '+'empty';
 			handlerClick = this.shoot.bind(this);
@@ -59,14 +55,14 @@ seaBattle.Cell = function (x, y) {
 				//this.td.addEventListener('mouseout',this.returnState.bind(this));
 			}
 		}
-        return this.td;
-    };
+		return this.td;
+	};
 	
 	this.clicked = function () {
 		this.field.arrangeShip(this.x, this.y);
 	}
-			                            
-    this.shoot = function (event) {
+			
+	this.shoot = function (event) {
 		var shotResult = this.checkShot();
 		this.delEvent('click', handlerClick);
 		this.delEvent('mouseover', handlerMouseOver);
@@ -74,10 +70,7 @@ seaBattle.Cell = function (x, y) {
 		seaBattle.theGame.priority(shotResult);
 	}
 
-	this.setShip = function () {
-		
-	}
-
+	
 	this.delEvent = function (event, h) {
 		if (h == undefined) {
 			h = handlerClick;
@@ -85,16 +78,13 @@ seaBattle.Cell = function (x, y) {
 		this.td.removeEventListener(event, h );
 	}
 	
- 
-    this.hover = function (event) {
-        this.setClassName(underCursor);
+	this.hover = function (event) {
+		this.setClassName(underCursor);
 	}
-    
-    this.returnState = function (event) {
-        this.setClassName(this.previousClassName);
-    }
-	
-	
+
+	this.returnState = function (event) {
+		this.setClassName(this.previousClassName);
+	}
 	
 	//cheks shot result
 	this.checkShot = function () {
