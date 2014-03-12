@@ -8,17 +8,14 @@ seaBattle.Cell = function (x, y) {
 		shipBegin = 'ship-begin-vertical',
 		shipEnd = 'ship-end-vertical',
 		shipCrashed = 'ship-crashed',
-		sank = 'sank',
-		underCursor = 'under-cursor';
-
-	var handlerClick = null,
-		handlerMouseOver = null,
-		handlerMouseOut = null;
+		sank = 'sank';
+		
+	var handlerClick = null;
+		
 	this.x = x;
 	this.y = y;
 	this.state = empty;
 	this.ship = null;
-	this.previousClassName = 'empty';
 	this.td = null;
 	this.field = null;
 	
@@ -35,11 +32,7 @@ seaBattle.Cell = function (x, y) {
 		if (attachment == 'enemyField') {
 			this.td.className = 'standart-cell '+'empty';
 			handlerClick = this.shoot.bind(this);
-			handlerMouseOver = this.hover.bind(this);
-			handlerMouseOut = this.returnState.bind(this);
 			this.td.addEventListener('click', handlerClick );
-			this.td.addEventListener('mouseover', handlerMouseOver );
-			this.td.addEventListener('mouseout', handlerMouseOut);
 		}
 		else {
 			// Player`s field. Clicks are used to arrange ships 
@@ -50,7 +43,7 @@ seaBattle.Cell = function (x, y) {
 			else {
 				this.td.className = 'standart-cell '+this.state;
 				handlerClick = this.clicked.bind(this);
-				this.td.addEventListener('click', handlerClick, true );
+				this.td.addEventListener('click', handlerClick);
 			}
 		}
 		return this.td;
@@ -63,25 +56,12 @@ seaBattle.Cell = function (x, y) {
 	this.shoot = function (event) {
 		var shotResult = this.checkShot();
 		this.delEvent('click', handlerClick);
-		this.delEvent('mouseover', handlerMouseOver);
-		this.delEvent('mouseout', handlerMouseOut);
 		seaBattle.theGame.priority(shotResult);
 	}
 
 	
-	this.delEvent = function (event, h) {
-		if (h == undefined) {
-			h = handlerClick;
-		};
-		this.td.removeEventListener(event, h );
-	}
-	
-	this.hover = function (event) {
-		this.setClassName(underCursor);
-	}
-
-	this.returnState = function (event) {
-		this.setClassName(this.previousClassName);
+	this.delEvent = function (event) {
+		this.td.removeEventListener(event, handlerClick );
 	}
 	
 	//cheks shot result
@@ -100,7 +80,6 @@ seaBattle.Cell = function (x, y) {
 			}
 		}
 		this.setClassName(this.state);
-		this.previousClassName = this.state;
 		return this.state;
 	}	
 }

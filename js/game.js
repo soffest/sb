@@ -66,9 +66,7 @@ seaBattle.Game = function () {
 		else {
 			if (enemyShipsCrashed ==20) {
 				this.enemyField.delCelEvents();
-				alert('Поздравляем! Ты настолько крут, что Чак Норрис' +
-					' отправляет своим врагам открытки' +
-					' с твоей фоткой!');
+				alert('Поздравляем! Ты нереально крут!)');
 			}
 		}
 	}

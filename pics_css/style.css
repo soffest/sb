@@ -17,16 +17,16 @@ table {
   background: url('pics/sank.jpg');
 }
 
-.under-cursor {
-  background: url('pics/bomb.jpg');
-}
-
 .darkblue {
   background: url('pics/putship.jpg');
 }
 
 .empty {
   background: url('pics/empty.jpg');
+}
+
+#enemyField .empty:hover {
+background: url('pics/bomb.jpg');
 }
 
 .miss {
