@@ -1,4 +1,4 @@
-var player = function () {
+seaBattle.Player = function () {
 	var lastOrientation = null,
 	lastShipX = 'empty',
 	lastShipY = null,
@@ -10,18 +10,33 @@ var player = function () {
 	x = null;
 	
 	this.move = function () {
-		while (result!='miss') {
-			this.shoot();
+		// while (result!='miss') {
+		// 	this.shoot();
+		// 	if (result == 'sank') {
+		// 		lastShipX = 'empty';
+		// 		lastShipY = null;
+		// 		lastOrientation = null;
+		// 		theGame.checkShipsLeft();
+				
+		// 	}
+		// }
+		// result = 0;
+		// return;
+		if (result == 'miss') {
+			result = null;
+			return;
+		}
+		var self = this;
+		setTimeout(function () {
+			self.shoot();
 			if (result == 'sank') {
 				lastShipX = 'empty';
 				lastShipY = null;
 				lastOrientation = null;
-				theGame.checkShipsLeft();
-				
+				seaBattle.theGame.checkShipsLeft();				
 			}
-		}
-		result = 0;
-		return;
+			self.move();
+		}, 300);
 	}
 	//choses shot method: random, when orientation is known or not
 	this.shoot = function () {
@@ -50,9 +65,9 @@ var player = function () {
 		while (!(check)) {
 			var randomX = ( Math.round( Math.random()*10- 0.5 ) );
 			var randomY = ( Math.round( Math.random()*10- 0.5 ) );
-			check = playerField.checkPlace( randomX, randomY, 1);
+			check = seaBattle.theGame.playerField.checkPlace( randomX, randomY, 1);
 		}
-		result = playerField.cells[randomX][randomY].checkShot();
+		result = seaBattle.theGame.playerField.cells[randomX][randomY].checkShot();
 		if (result == 'ship-crashed') {
 		lastShipX = randomX;
 		lastShipY = randomY;
@@ -69,9 +84,9 @@ var player = function () {
 			//alert ('StepX:' + lastStepX + '   StepY:' + lastStepY);
 			lastX = lastShipX + lastStepX;
 			lastY = lastShipY + lastStepY;
-			check = playerField.checkPlace( lastX, lastY, 1);
+			check = seaBattle.theGame.playerField.checkPlace( lastX, lastY, 1);
 		}
-		result = playerField.cells[lastX][lastY].checkShot();
+		result = seaBattle.theGame.playerField.cells[lastX][lastY].checkShot();
 		if (result == 'ship-crashed') {
 			lastOrientation = (lastStepX != 0) ? 'horizontal' : 'vertical';
 		}
@@ -84,7 +99,7 @@ var player = function () {
 		lastX = lastX + lastStepX;
 		lastY = lastY + lastStepY;
 		
-		check = playerField.checkPlace( (lastX), (lastY), 1);
+		check = seaBattle.theGame.playerField.checkPlace( (lastX), (lastY), 1);
 		if (!(check)) {
 			lastStepX = -lastStepX;
 			lastStepY = -lastStepY;
@@ -92,7 +107,7 @@ var player = function () {
 			lastY = lastShipY + lastStepY;
 			
 		}
-		result = playerField.cells[lastX][lastY].checkShot();
+		result = seaBattle.theGame.playerField.cells[lastX][lastY].checkShot();
 		if (result == 'miss') {
 			lastStepX = -lastStepX;
 			lastStepY = -lastStepY;

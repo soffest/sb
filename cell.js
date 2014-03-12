@@ -1,4 +1,4 @@
-var Cell = function (x, y) {
+seaBattle.Cell = function (x, y) {
     var empty = 'empty',
 		miss = 'miss',
 		ship = 'ship-horizontal',
@@ -18,6 +18,7 @@ var Cell = function (x, y) {
     this.ship = null;
     this.previousClassName = 'empty';
 	this.td = null;
+	this.field = null;
 	var handler1 = null,
 		handler2 = null;
 	
@@ -35,7 +36,7 @@ var Cell = function (x, y) {
 		if (attachment == 'enemyField') {
 			this.td.className = 'standart-cell '+'empty';
 			handler1 = this.shoot.bind(this);
-			this.td.addEventListener('click', handler1, true );
+			this.td.addEventListener('click', handler1 );
 			this.td.addEventListener('mouseover', this.hover.bind(this));
 			this.td.addEventListener('mouseout',this.returnState.bind(this));
 		}
@@ -57,13 +58,13 @@ var Cell = function (x, y) {
     };
 	
 	this.clicked = function () {
-		playerField.arrangeShip(this.x, this.y);
+		this.field.arrangeShip(this.x, this.y);
 	}
 			                            
     this.shoot = function (event) {
 		var shotResult = this.checkShot();
 		this.delEvent('click');
-		theGame.priority(shotResult);
+		seaBattle.theGame.priority(shotResult);
 	}
 
 	this.setShip = function () {
@@ -72,7 +73,7 @@ var Cell = function (x, y) {
 
 	this.delEvent = function (event) {
 		var h = handler1 || handler2;
-		this.td.removeEventListener(event, h , true);
+		this.td.removeEventListener(event, h );
 	}
 	
  

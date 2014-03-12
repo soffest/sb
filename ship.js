@@ -1,4 +1,4 @@
-var ship = function (size) {
+seaBattle.Ship = function (size) {
 	this.size = size;
 	this.orientation;//horizontal or vertical
 	this.decks = [];

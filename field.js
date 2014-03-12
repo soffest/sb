@@ -1,10 +1,10 @@
-var Field = function (width, height) {
+seaBattle.Field = function (width, height) {
     this.maxShipSize = 4;
     this.width = width;
     this.height = height;
     this.cells = [];
 	this.ships = [];
-
+	
 	var s = this.maxShipSize-1,
 		n = 0;
 
@@ -115,7 +115,7 @@ var Field = function (width, height) {
 			//checks if all ships are placed
 			if ((s == 0) && (n == this.maxShipSize-1)) {
 				this.delCelEvents();
-				theGame.start();
+				seaBattle.theGame.start();
 				return;
 			}
 			
@@ -138,6 +138,7 @@ var Field = function (width, height) {
 		var coords = {};
 		var cellX = this.cells[x];
 		var check = false;
+		var cellState = null;
 		if ( ( cellX == undefined ) || (cellX[y] == undefined) || (cellX[y].state == 'miss') || (cellX[y].state == 'ship-crashed') || (cellX[y].state == 'sank') ) {
 			return false;
 		}
@@ -163,7 +164,7 @@ var Field = function (width, height) {
 			//check the neighboring cells of the longitudinal coordinate
 				coords.crosscut = m + j;
 				if ((this.cells[ coords[keyX] ]!= undefined) && (this.cells[ coords[keyX] ][ coords[keyY] ] != undefined )) {
-					cellState = this.cells[ coords[keyX] ][ coords[keyY] ].state;
+						cellState = this.cells[ coords[keyX] ][ coords[keyY] ].state;
 					check = (orientation) ? ( cellState == 'empty') : (cellState != 'sank');
 					if   (!(check)) { 
 						return false;	

@@ -1,39 +1,45 @@
-var game = function () {
+seaBattle.Game = function () {
 	var result = null;
+	this.playerField = null;
+	this.enemyField = null;
 
 	this.prepare = function () {
+		this.playerField = new seaBattle.Field (10, 10),
+		this.enemyField = new seaBattle.Field (10,10),
+		enemy = new seaBattle.Player();
 		for (var i = 0; i < 10; i++) {
 			for (var j = 0; j < 10; j++) {
-				var playerCell = new Cell(i, j);
-				var enemyCell = new Cell(i,j);
-				playerField.addCell(playerCell);
-				enemyField.addCell(enemyCell);
+				var playerCell = new seaBattle.Cell(i, j);
+				var enemyCell = new seaBattle.Cell(i,j);
+				playerCell.field = this.playerField;
+				enemyCell.field = this.enemyField;
+				this.playerField.addCell(playerCell);
+				this.enemyField.addCell(enemyCell);
 			}
 		}
 	
 	// creates objects 'ship' for each field
-		for (var k = 0; k < playerField.maxShipSize ; k++) {
-			for (var m = 0; m < (playerField.maxShipSize - k); m++) {
-				var playerShip = new ship(k+1);
-				var enemyShip = new ship(k+1);
-				playerField.addShip(playerShip, m);
-				enemyField.addShip(enemyShip, m);
-   
+		for (var k = 0; k < this.playerField.maxShipSize ; k++) {
+			for (var m = 0; m < (this.playerField.maxShipSize - k); m++) {
+				var playerShip = new seaBattle.Ship(k+1);
+				var enemyShip = new seaBattle.Ship(k+1);
+				this.playerField.addShip(playerShip, m);
+				this.enemyField.addShip(enemyShip, m);
 			}
 		}
 
 		var arrangeRandomly = confirm('Расставить твои корабли случайным образом?');
 		if (arrangeRandomly) {
-	 		playerField.arrangeShipRandomly();
-	 		this.start();
+			this.playerField.arrangeShipRandomly();
+			this.start();
 		}
 		
-		playerField.draw('playerField', arrangeRandomly );
+		this.playerField.draw('playerField', arrangeRandomly );
 	}
 	
 	this.start = function  () {
-		enemyField.draw('enemyField');
-		enemyField.arrangeShipRandomly();
+		this.enemyField.draw('enemyField');
+		this.enemyField.arrangeShipRandomly();
 		
 	} 
 	
@@ -51,8 +57,8 @@ var game = function () {
 		var enemyShipsCrashed = enField.querySelectorAll('.sank').length;
 		if (playerShipsCrashed ==20)  {
 			alert ('ЛУЗЕР!!');
-			enemyField.drawLiveShips();
-			enemyField.delCelEvents();
+			this.enemyField.drawLiveShips();
+			this.enemyField.delCelEvents();
 		}
 		else {
 			if (enemyShipsCrashed ==20) {
