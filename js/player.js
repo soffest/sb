@@ -10,18 +10,6 @@ seaBattle.Player = function () {
 	x = null;
 	
 	this.move = function () {
-		// while (result!='miss') {
-		// 	this.shoot();
-		// 	if (result == 'sank') {
-		// 		lastShipX = 'empty';
-		// 		lastShipY = null;
-		// 		lastOrientation = null;
-		// 		theGame.checkShipsLeft();
-				
-		// 	}
-		// }
-		// result = 0;
-		// return;
 		if (result == 'miss') {
 			result = null;
 			return;
@@ -81,7 +69,6 @@ seaBattle.Player = function () {
 		while (!(check)) {
 			lastStepX = Math.round( Math.random()*3 - 1.5 ) ;
 			lastStepY = (lastStepX != 0) ? 0 : (Math.round( Math.random()*3 - 1.5));
-			//alert ('StepX:' + lastStepX + '   StepY:' + lastStepY);
 			lastX = lastShipX + lastStepX;
 			lastY = lastShipY + lastStepY;
 			check = seaBattle.theGame.playerField.checkPlace( lastX, lastY, 1);

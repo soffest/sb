@@ -71,7 +71,6 @@ seaBattle.Game = function () {
 					' с твоей фоткой!');
 			}
 		}
-		//window.location.reload();
 	}
 		
 }

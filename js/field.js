@@ -88,13 +88,11 @@ this.delCelEvents = function () {
 			if ( (!v) && (!h) ) {
 				return; 
 			}
-				//alert ('ship begins');
 			lastX = x;
 			lastY = y;
 			this.cells[x][y].setClassName('darkblue');
 		}
 		else {
-			//alert ('n=' + n + ',  ' + 's= ' + s);
 			if ( ( (x == lastX) && v ) || (s == 0) ) { 
 				this.ships[s][n].orientation = 'vertical'
 			}
@@ -184,7 +182,6 @@ this.delCelEvents = function () {
 		for ( var i = 0; i < ship.size ; i++) {
 			ship.decks[i] = this.cells[x][y];
 			this.cells[x][y].ship = ship;
-			//this.cells[x][y].state = ship.makeState(i);
 			ship.makeState(i);
 			if (ship.orientation == 'vertical') {
 				y++;

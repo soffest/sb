@@ -51,8 +51,6 @@ seaBattle.Cell = function (x, y) {
 				this.td.className = 'standart-cell '+this.state;
 				handlerClick = this.clicked.bind(this);
 				this.td.addEventListener('click', handlerClick, true );
-				//this.td.addEventListener('mouseover', this.hover.bind(this));
-				//this.td.addEventListener('mouseout',this.returnState.bind(this));
 			}
 		}
 		return this.td;

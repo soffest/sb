@@ -7,7 +7,7 @@ seaBattle.Ship = function (size) {
 	for (var j = 0; j < this.size; j++) {
 		this.decks.push(null);        
 	}
-	
+
 	this.draw = function (className) {
 		for (var k = 0; k< this.size; k++) {
 			if (className) {
@@ -19,21 +19,11 @@ seaBattle.Ship = function (size) {
 				this.decks[k].setClassName(this.decks[k].state);
 				this.decks[k].previousClassName = this.decks[k].state;
 			}
-			//alert ('className='+className);
 		}
 	} 
+
+	
 	this.makeState = function (deckNumber) {
-		/*if (deckNumber>0) {
-			if (deckNumber == this.size-1) {
-				state ='ship-end' 
-				}
-				else {
-				state = 'ship' 
-				}
-		}
-		else {
-		state = 'ship-begin';	
-		}*/
 		state = (deckNumber == 0) ? 'ship-begin' : (deckNumber == this.size-1) ? 'ship-end' : 'ship';
 		state = state + '-' + this.orientation;
 		this.decks[deckNumber].state = state;
