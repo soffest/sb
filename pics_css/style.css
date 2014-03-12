@@ -1,0 +1,64 @@
+table {
+  border: 5px solid lightblue;
+	border-spacing: 0;
+	display: block;
+}
+
+
+
+.standart-cell {
+  border: 1px solid grey;
+  width: 28px;
+  height: 28px;
+}
+
+.sank {
+  border: 2px solid black;
+  background: url('pics/sank.jpg');
+}
+
+.under-cursor {
+  background: url('pics/bomb.jpg');
+}
+
+.darkblue {
+  background: url('pics/putship.jpg');
+}
+
+.empty {
+  background: url('pics/empty.jpg');
+}
+
+.miss {
+  background: url('pics/miss.jpg');
+}
+
+.ship-horizontal {
+  background: url('pics/ship-horizontal.jpg');
+}
+
+.ship-begin-horizontal {
+  background: url('pics/ship-begin-horizontal.jpg');
+}
+
+.ship-end-horizontal {
+  background: url('pics/ship-end-horizontal.jpg');
+}
+
+.ship-vertical {
+  background: url('pics/ship-vertical.jpg');
+}
+
+.ship-begin-vertical {
+  background: url('pics/ship-begin-vertical.jpg');
+}
+
+.ship-end-vertical {
+  background: url('pics/ship-end-vertical.jpg');
+}
+
+
+.ship-crashed {
+  background: url('pics/ship-crashed.jpg');
+}
+
